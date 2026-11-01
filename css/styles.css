@@ -46,3 +46,8 @@ a[aria-label="Consultar por WhatsApp"] .animate-ping { animation: remanso-wa-pul
 @media (prefers-reduced-motion: reduce) {
   a[aria-label="Consultar por WhatsApp"] .animate-ping { animation:none; opacity:.2; }
 }
+
+
+#faq button[aria-expanded="true"] svg {
+  transform: none !important;
+}

@@ -24,19 +24,36 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', () => { if (window.innerWidth >= 1024) setMenu(false); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
 
+
   // 3. Acordeón de preguntas frecuentes (una abierta a la vez).
   document.querySelectorAll('#faq button[aria-controls]').forEach(button => {
     button.addEventListener('click', () => {
       const opening = button.getAttribute('aria-expanded') !== 'true';
+
       document.querySelectorAll('#faq button[aria-controls]').forEach(other => {
         other.setAttribute('aria-expanded', 'false');
+
         const panel = document.getElementById(other.getAttribute('aria-controls'));
         panel?.setAttribute('aria-hidden', 'true');
+
+        // Restaurar el símbolo + de las preguntas cerradas
+        const verticalLine = other.querySelector('svg path[d="M12 5v14"]');
+        if (verticalLine) verticalLine.style.display = '';
       });
+
       button.setAttribute('aria-expanded', String(opening));
-      document.getElementById(button.getAttribute('aria-controls'))?.setAttribute('aria-hidden', String(!opening));
+
+      document.getElementById(button.getAttribute('aria-controls'))
+        ?.setAttribute('aria-hidden', String(!opening));
+
+      // Al abrir, ocultar la línea vertical para mostrar −
+      const verticalLine = button.querySelector('svg path[d="M12 5v14"]');
+      if (verticalLine) {
+        verticalLine.style.display = opening ? 'none' : '';
+      }
     });
   });
+
 
   // 4. Reseñas: los botones desplazan una tarjeta; en móvil se puede deslizar.
   const track = document.querySelector('#review-track');
