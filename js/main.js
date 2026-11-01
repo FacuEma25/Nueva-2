@@ -70,7 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const mensaje = String(fields.get('mensaje') || '').trim();
 
       // Reemplazar por tu clave de Web3Forms
-      const ACCESS_KEY = 'TU_ACCESS_KEY';
+      const ACCESS_KEY = '53b096cc-85a9-4306-a95a-247317a43689';
+      // KEY ORIGINAL DE EL REMANSO: 40a86571-575c-4f73-a01b-3c2ac9de030d
 
       if (status) {
         status.textContent = 'Enviando tu consulta...';
