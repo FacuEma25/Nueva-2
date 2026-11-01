@@ -1,0 +1,48 @@
+/* EL REMANSO — ESTILOS DE MANTENIMIENTO
+   Colores originales: azul #1B3D52, dorado #C4A07A.
+   Los estilos utilitarios originales se mantienen en base.css para fidelidad visual.
+   Agregar aquí ajustes de diseño; evitar modificar base.css salvo necesidad.
+*/
+:root { --remanso-azul: #1B3D52; --remanso-dorado: #C4A07A; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body { overflow-x: hidden; }
+section[id] { scroll-margin-top: 80px; }
+/* Encabezado transparente sobre el hero y sólido al desplazarse */
+header { transition: background-color .3s ease, box-shadow .3s ease; }
+header.header-scrolled { background: rgba(27,61,82,.98); box-shadow: 0 3px 18px rgba(0,0,0,.12); }
+/* Menú móvil */
+#menu-movil { visibility: hidden; pointer-events: none; }
+#menu-movil.is-open { max-height: 440px !important; opacity: 1 !important; visibility: visible; pointer-events: auto; }
+#menu-toggle { cursor: pointer; }
+/* Preguntas frecuentes */
+#faq [aria-expanded="true"] + div { max-height: 500px !important; padding-bottom: 24px; }
+#faq [aria-expanded="true"] .lucide-plus { transform: rotate(45deg); transition: transform .25s; }
+#faq [aria-expanded="false"] .lucide-plus { transition: transform .25s; }
+/* Formulario */
+.form-status { font-size: .9rem; line-height: 1.5; color: #f2d4ae; }
+.form-status:empty { display: none; }
+.form-status a { text-decoration: underline; }
+/* Carrusel: conservar scroll horizontal en pantallas táctiles */
+#review-track { -webkit-overflow-scrolling: touch; }
+/* Accesibilidad */
+:focus-visible { outline: 2px solid var(--remanso-dorado); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+@media (max-width: 639px) {
+  #faq .bg-white.border { padding-left: 18px; padding-right: 18px; }
+  #faq [aria-expanded="true"] + div { max-height: 700px !important; }
+}
+
+/* Botón flotante WhatsApp: visible y con halo pulsante original */
+a[aria-label="Consultar por WhatsApp"] { opacity: 1 !important; transform: translateY(0); }
+a[aria-label="Consultar por WhatsApp"] .animate-ping { animation: remanso-wa-pulse 1.8s cubic-bezier(0,0,.2,1) infinite; }
+@keyframes remanso-wa-pulse { 0% { transform:scale(1); opacity:.32; } 75%,100% { transform:scale(1.75); opacity:0; } }
+/* Ícono hamburguesa -> X al abrir el menú, sin dependencias */
+#menu-toggle .menu-icon-close { display:none; }
+#menu-toggle[aria-expanded="true"] .menu-icon-open { display:none; }
+#menu-toggle[aria-expanded="true"] .menu-icon-close { display:block; }
+@media (prefers-reduced-motion: reduce) {
+  a[aria-label="Consultar por WhatsApp"] .animate-ping { animation:none; opacity:.2; }
+}

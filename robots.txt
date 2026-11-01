@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://elremansoresidencia.com/sitemap.xml
